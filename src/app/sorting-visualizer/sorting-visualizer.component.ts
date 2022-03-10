@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { BubbleSort } from '../algorithms/bubble-sort';
 import { QuickSort } from '../algorithms/quick-sort';
 import { MergeSort } from '../algorithms/merge-sort';
+import { HeapSort } from '../algorithms/heap-sort';
 import { SortStatus } from '../algorithms/sort-status';
 import { MergedSortStatus } from '../algorithms/merged-sort-status';
 
@@ -110,6 +111,22 @@ export class SortingVisualizerComponent implements OnInit {
       setTimeout(() => {
         this.curr_comps = [statuses[i].start, statuses[i].end];
         statuses[i].repairArray(this.array);
+        if (i == (statuses.length - 1)) {
+          this.curr_comps = [-1, -1];
+          this.canReset = true;
+        }
+      }, i * 1.25);
+    }
+  }
+
+  doHeapSort() {
+    const heapSort = new HeapSort(this.array.slice());
+    heapSort.sort();
+    const statuses = heapSort.getStatuses();
+    for (let i = 0; i < statuses.length; i++) {
+      setTimeout(() => {
+        this.curr_comps = [-1, -1];
+        this.renderStatuses(this.array, statuses[i]);
         if (i == (statuses.length - 1)) {
           this.curr_comps = [-1, -1];
           this.canReset = true;
