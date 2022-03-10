@@ -1,7 +1,15 @@
 $element-width: 4px
 
-$bar-bg: #0d47a1
-$btn-bg: #1976d2
+$bar-bg: #1a1a1a
+$btn-bg: #ff9800
+$bar-text-fg: #b0bec5
+$btn-fg: #2a2a2a
+
+.container
+  background-color: #212121
+  width: 100vw
+  height: 100vh
+  margin: 0px
 
 .top-bar
   background-color: $bar-bg
@@ -31,17 +39,20 @@ $btn-bg: #1976d2
   width: $element-width
   display: inline-block
   margin: 0px 1px
-  background-color: red
+  background-color: #82aaff
+
+.compared
+  background-color: #c3e88d
 
 h3
   display: inline
   font-family: sans-serif
-  color: #fff
+  color: $bar-text-fg
 
 button
   background-color: $btn-bg
   text-decoration: none
-  color: #fff
+  color: $btn-fg
   border: none
   padding: 10px 20px
   display: inline

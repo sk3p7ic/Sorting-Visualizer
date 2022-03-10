@@ -18,9 +18,11 @@ export class SortingVisualizerComponent implements OnInit {
   width: any;
   height: any;
   array: number[];
+  curr_comps: number[];
 
   constructor() {
     this.array = []
+    this.curr_comps = [];
   }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class SortingVisualizerComponent implements OnInit {
   resetArray() {
     var maxValue = this.height * 0.85; // The max height of an element
     this.array = [] // Reset (clear) the array
+    this.curr_comps = [-1, -1];
     for (let i = 0; i < this.calculateNumElements(); i++) {
       this.array.push(
         // Generate a psedo-random value on an interval
@@ -51,7 +54,7 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   renderStatuses(arr: number[], stat: SortStatus) {
-    console.log(stat);
+    this.curr_comps = [stat.a, stat.b];
     if (stat.swapped) {
       var temp = arr[stat.a];
       arr[stat.a] = arr[stat.b];
@@ -64,9 +67,14 @@ export class SortingVisualizerComponent implements OnInit {
     var newArray = bubbleSort.sort();
     var statuses = bubbleSort.getStatuses();
     for (let i = 0; i < statuses.length; i++) {
-      setTimeout(() => { this.renderStatuses(this.array, statuses[i]); }, 50);
+      setTimeout(() => {
+        this.curr_comps = [-1, -1];
+        this.renderStatuses(this.array, statuses[i]);
+        if (i == (statuses.length - 1)) {
+          this.curr_comps = [-1, -1];
+        }
+      }, i * 1.25);
     }
-    console.log(this.array);
   }
 
 }
