@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 
 
 const ELEMENT_WIDTH = 6;
-const VALUE_MAX = 1000;
 const VALUE_MIN = 10;
 
 
@@ -35,12 +34,14 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   resetArray() {
+    var maxValue = this.height * 0.85; // The max height of an element
+    this.array = [] // Reset (clear) the array
     for (let i = 0; i < this.calculateNumElements(); i++) {
       this.array.push(
-        Math.floor(Math.random() * ((VALUE_MAX * 0.75) - VALUE_MIN + 1) + VALUE_MIN)
+        // Generate a psedo-random value on an interval
+        Math.floor(Math.random() * (maxValue - VALUE_MIN + 1) + VALUE_MIN)
       );
     }
-    console.log(this.array);
   }
 
   calculateNumElements() {

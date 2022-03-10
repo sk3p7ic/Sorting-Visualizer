@@ -1,11 +1,47 @@
 $element-width: 4px
 
+$bar-bg: #0d47a1
+$btn-bg: #1976d2
+
+.top-bar
+  background-color: $bar-bg
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  display: inline
+  padding: 0px 10px
+
+.sorting-buttons
+  display: inline
+
+.gap
+  display: inline
+  margin: 0px 5px
+
 .values-array
   text-align: center
   margin: auto
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
 
 .array-value
   width: $element-width
   display: inline-block
   margin: 0px 1px
   background-color: red
+
+h3
+  display: inline
+  font-family: sans-serif
+  color: #fff
+
+button
+  background-color: $btn-bg
+  text-decoration: none
+  color: #fff
+  border: none
+  padding: 10px 20px
+  display: inline

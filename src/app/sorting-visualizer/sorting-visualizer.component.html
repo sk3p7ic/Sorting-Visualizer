@@ -1,3 +1,20 @@
+<div class="top-bar">
+  <h3>Sorting Visualizer</h3>
+  <div class="sorting-buttons">
+    <div class="gap"></div>
+    <button type="button" (click)="resetArray()">Reset Array</button>
+    <div class="gap"></div>
+    <button type="button">Bubble Sort</button>
+    <div class="gap"></div>
+    <button type="button">Quick Sort</button>
+    <div class="gap"></div>
+    <button type="button">Merge Sort</button>
+    <div class="gap"></div>
+    <button type="button">Heap Sort</button>
+  </div>
+</div>
+
+
 <div class="values-array">
   <div class="array-value" *ngFor="let value of array" [style.height.px]="value">
   </div>
