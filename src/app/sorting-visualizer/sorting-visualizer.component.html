@@ -21,6 +21,7 @@
       class="array-value"
       *ngFor="let value of array; index as i"
       [ngClass]="(curr_comps[0] == i || curr_comps[1] == i) ? 'compared' : ''"
+      [ngClass]="(hasCorrectPlacement[i]) ? 'placed' : ''"
       [style.height.px]="value">
     </div>
   </div>

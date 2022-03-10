@@ -24,11 +24,13 @@ export class SortingVisualizerComponent implements OnInit {
   array: number[];
   curr_comps: number[];
   canReset: boolean;
+  hasCorrectPlacement: boolean[];
 
   constructor() {
     this.array = []
     this.curr_comps = [];
     this.canReset = true;
+    this.hasCorrectPlacement = [];
   }
 
   ngOnInit(): void {
@@ -46,12 +48,14 @@ export class SortingVisualizerComponent implements OnInit {
   resetArray() {
     var maxValue = this.height * 0.85; // The max height of an element
     this.array = [] // Reset (clear) the array
+    this.hasCorrectPlacement = [];
     this.curr_comps = [-1, -1];
     for (let i = 0; i < this.calculateNumElements(); i++) {
       this.array.push(
         // Generate a psedo-random value on an interval
         Math.floor(Math.random() * (maxValue - VALUE_MIN + 1) + VALUE_MIN)
       );
+      this.hasCorrectPlacement.push(false);
     }
   }
 
@@ -68,6 +72,14 @@ export class SortingVisualizerComponent implements OnInit {
     }
   }
 
+  checkIfFinalPlacement(arr: number[]) {
+    for (let i = 0; i < this.array.length; i++) {
+      setTimeout(() => {
+        this.hasCorrectPlacement[i] = (this.array[i] === arr[i]);
+      }, i * 1.25);
+    }
+  }
+
   doBubbleSort() {
     this.canReset = false;
     const bubbleSort = new BubbleSort(this.array.slice());
@@ -79,6 +91,7 @@ export class SortingVisualizerComponent implements OnInit {
         this.renderStatuses(this.array, statuses[i]);
         if (i == (statuses.length - 1)) {
           this.curr_comps = [-1, -1];
+          this.checkIfFinalPlacement(bubbleSort.getArray());
           this.canReset = true;
         }
       }, i * 1.25);
@@ -97,6 +110,7 @@ export class SortingVisualizerComponent implements OnInit {
         this.renderStatuses(this.array, statuses[i]);
         if (i == (statuses.length - 1)) {
           this.curr_comps = [-1, -1];
+          this.checkIfFinalPlacement(quickSort.getArray());
           this.canReset = true;
         }
       }, i * 1.25);
@@ -115,6 +129,7 @@ export class SortingVisualizerComponent implements OnInit {
         statuses[i].repairArray(this.array);
         if (i == (statuses.length - 1)) {
           this.curr_comps = [-1, -1];
+          this.checkIfFinalPlacement(mergeSort.getArray());
           this.canReset = true;
         }
       }, i * 1.25);
@@ -132,6 +147,7 @@ export class SortingVisualizerComponent implements OnInit {
         this.renderStatuses(this.array, statuses[i]);
         if (i == (statuses.length - 1)) {
           this.curr_comps = [-1, -1];
+          this.checkIfFinalPlacement(heapSort.getArray());
           this.canReset = true;
         }
       }, i * 1.25);
