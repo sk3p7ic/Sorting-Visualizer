@@ -19,10 +19,12 @@ export class SortingVisualizerComponent implements OnInit {
   height: any;
   array: number[];
   curr_comps: number[];
+  canReset: boolean;
 
   constructor() {
     this.array = []
     this.curr_comps = [];
+    this.canReset = true;
   }
 
   ngOnInit(): void {
@@ -63,6 +65,7 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   doBubbleSort() {
+    this.canReset = false;
     var bubbleSort = new BubbleSort(this.array.slice());
     var newArray = bubbleSort.sort();
     var statuses = bubbleSort.getStatuses();
@@ -72,6 +75,7 @@ export class SortingVisualizerComponent implements OnInit {
         this.renderStatuses(this.array, statuses[i]);
         if (i == (statuses.length - 1)) {
           this.curr_comps = [-1, -1];
+          this.canReset = true;
         }
       }, i * 1.25);
     }
