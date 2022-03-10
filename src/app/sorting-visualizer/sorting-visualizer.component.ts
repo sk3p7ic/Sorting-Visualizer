@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { BubbleSort } from '../algorithms/bubble-sort';
+import { QuickSort } from '../algorithms/quick-sort';
 import { SortStatus } from '../algorithms/sort-status';
 
 
@@ -79,6 +80,12 @@ export class SortingVisualizerComponent implements OnInit {
         }
       }, i * 1.25);
     }
+  }
+
+  doQuickSort() {
+    var quickSort = new QuickSort(this.array.slice());
+    quickSort.sort(0, this.array.length - 1);
+    this.array = quickSort.getArray();
   }
 
 }
