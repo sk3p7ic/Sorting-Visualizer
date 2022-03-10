@@ -85,7 +85,18 @@ export class SortingVisualizerComponent implements OnInit {
   doQuickSort() {
     var quickSort = new QuickSort(this.array.slice());
     quickSort.sort(0, this.array.length - 1);
-    this.array = quickSort.getArray();
+    var statuses = quickSort.getStatuses();
+    console.log(statuses);
+    for (let i = 0; i < statuses.length; i++) {
+      setTimeout(() => {
+        this.curr_comps = [-1, -1];
+        this.renderStatuses(this.array, statuses[i]);
+        if (i == (statuses.length - 1)) {
+          this.curr_comps = [-1, -1];
+          this.canReset = true;
+        }
+      }, i * 1.25);
+    }
   }
 
 }
