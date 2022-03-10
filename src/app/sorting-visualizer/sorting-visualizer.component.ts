@@ -70,9 +70,9 @@ export class SortingVisualizerComponent implements OnInit {
 
   doBubbleSort() {
     this.canReset = false;
-    var bubbleSort = new BubbleSort(this.array.slice());
-    var newArray = bubbleSort.sort();
-    var statuses = bubbleSort.getStatuses();
+    const bubbleSort = new BubbleSort(this.array.slice());
+    bubbleSort.sort();
+    const statuses = bubbleSort.getStatuses();
     for (let i = 0; i < statuses.length; i++) {
       setTimeout(() => {
         this.curr_comps = [-1, -1];
@@ -86,9 +86,10 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   doQuickSort() {
-    var quickSort = new QuickSort(this.array.slice());
+    this.canReset = false;
+    const quickSort = new QuickSort(this.array.slice());
     quickSort.sort(0, this.array.length - 1);
-    var statuses = quickSort.getStatuses();
+    const statuses = quickSort.getStatuses();
     console.log(statuses);
     for (let i = 0; i < statuses.length; i++) {
       setTimeout(() => {
@@ -103,10 +104,11 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   doMergeSort() {
-    var mergeSort = new MergeSort(this.array.slice());
+    this.canReset = false;
+    const mergeSort = new MergeSort(this.array.slice());
     mergeSort.sort();
     //this.array = mergeSort.getArray();
-    var statuses = mergeSort.getStatuses();
+    const statuses = mergeSort.getStatuses();
     for (let i = 0; i < statuses.length; i++) {
       setTimeout(() => {
         this.curr_comps = [statuses[i].start, statuses[i].end];
@@ -120,6 +122,7 @@ export class SortingVisualizerComponent implements OnInit {
   }
 
   doHeapSort() {
+    this.canReset = false;
     const heapSort = new HeapSort(this.array.slice());
     heapSort.sort();
     const statuses = heapSort.getStatuses();

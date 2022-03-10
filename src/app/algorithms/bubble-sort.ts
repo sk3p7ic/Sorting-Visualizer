@@ -23,6 +23,9 @@ export class BubbleSort {
       }
     }
     console.log(this.statuses);
+  }
+
+  getArray() {
     return this.array;
   }
 
