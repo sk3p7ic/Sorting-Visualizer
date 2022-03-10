@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { BubbleSort } from '../algorithms/bubble-sort';
+import { SortStatus } from '../algorithms/sort-status';
 
 
 const ELEMENT_WIDTH = 6;
@@ -46,6 +48,25 @@ export class SortingVisualizerComponent implements OnInit {
 
   calculateNumElements() {
     return Math.floor((this.width * 0.9) / ELEMENT_WIDTH);
+  }
+
+  renderStatuses(arr: number[], stat: SortStatus) {
+    console.log(stat);
+    if (stat.swapped) {
+      var temp = arr[stat.a];
+      arr[stat.a] = arr[stat.b];
+      arr[stat.b] = temp
+    }
+  }
+
+  doBubbleSort() {
+    var bubbleSort = new BubbleSort(this.array.slice());
+    var newArray = bubbleSort.sort();
+    var statuses = bubbleSort.getStatuses();
+    for (let i = 0; i < statuses.length; i++) {
+      setTimeout(() => { this.renderStatuses(this.array, statuses[i]); }, 50);
+    }
+    console.log(this.array);
   }
 
 }
